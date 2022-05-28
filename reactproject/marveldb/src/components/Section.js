@@ -1,4 +1,5 @@
 import {Container, Row} from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export function Section(props){
     const {title, children, id} = props
@@ -10,4 +11,8 @@ export function Section(props){
             </Row>
     </Container>
     </>
+}
+
+Section.propTypes = {
+    children: PropTypes.node
 }

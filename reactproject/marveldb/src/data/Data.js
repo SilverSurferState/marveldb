@@ -160,6 +160,7 @@ export const ACTORS_DATA = [
         {
             firstName: "Robert",
             lastName: "Downey Junior",
+            characterName: "Tony Stark/Iron Man",
             movies: [
                 "Iron Man", "Avengers"
             ]
@@ -167,11 +168,76 @@ export const ACTORS_DATA = [
         {
             firstName: "Chris",
             lastName: "Hemsworth",
+            characterName: "Thor Odinson",
             movies: [
                 "Thor", "Avengers"
             ]
 
-        }
+        },
+    {
+        firstName: "Chris",
+        lastName: "Evans",
+        characterName: "Steve Rogers/Captain America",
+        movies: [
+            "Captain America", "Avengers"
+        ]
+
+    },
+    {
+        firstName: "Chadwick",
+        lastName: "Boseman",
+        characterName: "T'Challa/Black Panther",
+        movies: [
+            "Black Panther", "Avengers: Civil War"
+        ]
+
+    },
+    {
+        firstName: "Scarlett",
+        lastName: "Johansson",
+        characterName: "Natasha Romanoff/Black Widow",
+        movies: [
+            "Black Widow", "Avengers"
+        ]
+
+    },
+    {
+        firstName: "Mark",
+        lastName: "Ruffalo",
+        characterName: "Dr.Bruce Banner/Hulk",
+        movies: [
+            "The Incredible Hulk", "Avengers"
+        ]
+
+    },
+    {
+        firstName: "Jeremy",
+        lastName: "Renner",
+        characterName: "Clint Barton/Hawkeye",
+        movies: [
+            "Avengers", "Avengers: Civil War"
+        ]
+
+    },
+    {
+        firstName: "Tom",
+        lastName: "Hiddleston",
+        characterName: "Loki Odinson",
+        movies: [
+            "Thor", "Avengers"
+        ]
+
+    },
+    {
+        firstName: "Tom",
+        lastName: "Holland",
+        characterName: "Peter Parker/Spider-Man",
+        movies: [
+            "Spider-Man", "Avengers: Civil War"
+        ]
+
+    },
+
         ]
 
 

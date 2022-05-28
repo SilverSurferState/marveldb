@@ -1,24 +1,36 @@
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import {Counter} from "./Counter";
 import {useState} from "react";
+import PropTypes from "prop-types";
 
-export function MyCard(props){
-    const {title, children, setNumValue, score} = props;
+export function DataElement(props){
+    const {title, children, setNumValue, score, info, showInfo} = props;
     const [clicked, setClicked] = useState(false);
     const imgTitle = title.replace(/\s+/g, '').toLowerCase();
+    console.log(title)
+    console.log(info)
     return <>
         <Card className="m-3 " onClick={() => setClicked(!clicked)}>
             <Card.Img variant="top" src={`images/${imgTitle}.jpg`}></Card.Img>
             <Card.Body>
                 <Card.Title>{title && title}</Card.Title>
-                <div>
+                {info !== undefined && <Button className="btn btn-primary m-1" onClick={() => showInfo(!info)}>Meer info</Button>}
+                {info && <div>
                     {children}
-                </div>
+                </div>}
                 <footer>
                     <Counter clicked={clicked} score={score} setNumValue={setNumValue}></Counter>
                 </footer>
             </Card.Body>
         </Card>
-
     </>
+}
+
+DataElement.propTypes = {
+    title: PropTypes.string,
+    children: PropTypes.node,
+    setNumValue: PropTypes.func,
+    score: PropTypes.number,
+    info: PropTypes.bool,
+    showInfo: PropTypes.func
 }
