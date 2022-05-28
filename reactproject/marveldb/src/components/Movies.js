@@ -1,4 +1,4 @@
-import {DataElement} from "./dataElement";
+import {CardElement} from "./CardElement";
 import {Section} from "./Section";
 import {Col} from "react-bootstrap";
 import {useState} from "react";
@@ -33,13 +33,13 @@ export function Movies(props){
 }
 
 export function Movie(props){
-    const {movie} = props;
-    const [numValue, setNumValue] = useState(movie.score);
+    const {releaseDate, score, title} = props.movie;
+    const [numValue, setNumValue] = useState(score);
     return <>
         <Col className="col-sm-3 h-auto">
-            <DataElement title={movie.title} setNumValue={setNumValue} score={numValue}>
-            <p><strong>Releasedatum: </strong> {movie.releaseDate}</p>
-        </DataElement></Col>
+            <CardElement title={title} setNumValue={setNumValue} score={numValue}>
+            <div><strong>Releasedatum: </strong> {releaseDate}</div>
+        </CardElement></Col>
     </>
 }
 
@@ -50,5 +50,7 @@ Movies.propTypes = {
 }
 
 Movie.propTypes = {
-    movie: PropTypes.object
+    releaseDate: PropTypes.string,
+    score: PropTypes.number,
+    title: PropTypes.string
 }

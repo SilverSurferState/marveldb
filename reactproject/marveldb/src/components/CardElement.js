@@ -3,19 +3,17 @@ import {Counter} from "./Counter";
 import {useState} from "react";
 import PropTypes from "prop-types";
 
-export function DataElement(props){
+export function CardElement(props){
     const {title, children, setNumValue, score, info, showInfo} = props;
     const [clicked, setClicked] = useState(false);
     const imgTitle = title.replace(/\s+/g, '').toLowerCase();
-    console.log(title)
-    console.log(info)
     return <>
         <Card className="m-3 " onClick={() => setClicked(!clicked)}>
             <Card.Img variant="top" src={`images/${imgTitle}.jpg`}></Card.Img>
             <Card.Body>
                 <Card.Title>{title && title}</Card.Title>
                 {info !== undefined && <Button className="btn btn-primary m-1" onClick={() => showInfo(!info)}>Meer info</Button>}
-                {info && <div>
+                {(info === undefined || info) && <div>
                     {children}
                 </div>}
                 <footer>
@@ -26,7 +24,7 @@ export function DataElement(props){
     </>
 }
 
-DataElement.propTypes = {
+CardElement.propTypes = {
     title: PropTypes.string,
     children: PropTypes.node,
     setNumValue: PropTypes.func,

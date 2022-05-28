@@ -1,4 +1,4 @@
-import {DataElement} from "./dataElement";
+import {CardElement} from "./CardElement";
 import {Section} from "./Section";
 import {Col} from "react-bootstrap";
 import {useState} from "react";
@@ -17,7 +17,7 @@ export function Actor(props){
     const [info, showInfo] = useState(false);
     return <>
         <Col className="col-sm-3 h-auto">
-            <DataElement title={`${firstName} ${lastName}`} info={info} showInfo={showInfo} >
+            <CardElement title={`${firstName} ${lastName}`} info={info} showInfo={showInfo} >
                 <div>
                     <strong>personage: </strong>
                     <div>{characterName}</div>
@@ -27,7 +27,7 @@ export function Actor(props){
                     {movies.map((m, index) => <li key={index}>{m}</li>)}
                 </div>
 
-            </DataElement></Col>
+            </CardElement></Col>
     </>
 }
 
