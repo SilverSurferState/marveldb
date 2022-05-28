@@ -8,11 +8,11 @@ export function CardElement(props){
     const [clicked, setClicked] = useState(false);
     const imgTitle = title.replace(/\s+/g, '').toLowerCase();
     return <>
-        <Card className="m-3 " onClick={() => setClicked(!clicked)}>
+        <Card className="m-3" onClick={() => setClicked(!clicked)}>
             <Card.Img variant="top" src={`images/${imgTitle}.jpg`}></Card.Img>
             <Card.Body>
                 <Card.Title>{title && title}</Card.Title>
-                {info !== undefined && <Button className="btn btn-primary m-1" onClick={() => showInfo(!info)}>Meer info</Button>}
+                {info !== undefined && <Button className="btn btn-primary" onClick={() => showInfo(!info)}>Meer info</Button>}
                 {(info === undefined || info) && <div>
                     {children}
                 </div>}

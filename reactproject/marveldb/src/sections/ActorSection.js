@@ -10,7 +10,7 @@ export function ActorSection(props){
     const [sort, setSort] = useState("default");
     return <Container>
         <div><h3 className="text-center rounded">{id}</h3></div>
-        <Row>
+        <Row className="justify-content-center">
             <Sorter onClick={() => setSort("AZ")} name="A-Z"/>
             <Sorter onClick={() => setSort("ZA")} name="Z-A"/>
         </Row>
