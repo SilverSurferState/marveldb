@@ -237,7 +237,36 @@ export const ACTORS_DATA = [
         ]
 
     },
+]
 
-        ]
+export const COMIC_DATA = [
+    {
+        title: "MoonKnight",
+        published: "June 01, 2022",
+        description: "Marvel’s most enigmatic hero, in the premiere issue of his first-ever solo title! Mercenary Marc Spector. Millionaire Steven Grant. Cab driver Jake Lockley. Each is a different side of the same man. Together, they become one — to do what they must — as the macabre Moon Knight! But this silver-clad avenger of the night will soon meet his match in the ruthless Bushman — a face from his past, returned to plague him anew! The visionary pairing of writer Doug Moench and artist Bill Sienkiewicz presents the definitive take on Marc Spector’s dynamic origin — and delves deep into the bizarre life of Moon Knight, the Fist of Khonshu! It’s one of the all-time great Marvel comic books, boldly re-presented in its original form, ads and all! Reprinting MOON KNIGHT (1980) #1. "
+    },
+    {
+        title: "Deadpool",
+        published: "June 01, 2022",
+        writer: [" Rob Liefeld", "Chad Bowers"],
+        description: "Deadpool is on the hunt for a superweapon with ties to his past – but every time he gets close, the armored brute named Thumper kind of…kills him. Wade Wilson always gets better, but dying still sucks. Can he and Domino get to the bottom of things before Deadpool meets his maker again? Answers might lay in a secret mission from years ago that brought Deadpool and X-Force together. But what do today’s problems have to do with this firefight flashback? Garrison Kane, the cyborg called Weapon X, knows the truth about Thumper – and now it’s up to Deadpool and Domino to beat it out of him! "
+    },
+    {
+        title: "Shang-Chi",
+        published: "June 01, 2022",
+        writer: "Gene Yang"
+    },
+    {
+        title: "Captain Marvel",
+        writer: "Kelly Thompson",
+        description: "CAPTAIN MARVEL NO MORE! Carol Danvers is missing! Her disappearance has left the newly sentient BINARY to fill in, but stepping into the shoes of one of Earth’s greatest heroes is no easy feat. As Binary finds herself plunged into a world she barely understands, the questions about exactly who and what Binary is grow deeper. And where IS Captain Marvel anyway?! A brand-new arc starts here as Kelly Thompson’s award-winning epic adventure continues! "
+
+    },
+    {
+        title: "Avengers Forever",
+        description: "INTRODUCING THE INVINCIBLE VIBRANIUM MAN! On an alternate Earth where Wakanda has been crushed from existence and where the Black Panther is a forgotten legend, one man known as T’Challa will forge a new legacy for himself and perhaps even hope for a planet caught in the grips of the god-slaughtering King Killmonger. "
+    }
+
+]
 
 
