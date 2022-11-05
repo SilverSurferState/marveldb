@@ -17,8 +17,8 @@ MovieSection.propTypes = {
 export function MovieSection(props){
     const {id} = props;
     const [show, setShow] = useState(false);
-    const {values} = useFirestore("movies", 'title', 'asc');
-    console.log(show)
+    const {values} = useFirestore("Movies");
+    console.log(values)
     return <Container>
         <div><h3 className="text-center rounded">{id}</h3></div>
         <Row className="justify-content-center">

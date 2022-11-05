@@ -2,10 +2,6 @@ import {Button, Card} from "react-bootstrap";
 import {Counter} from "./Counter";
 import {useState} from "react";
 import PropTypes from "prop-types";
-import { getStorage, ref, getDownloadURL} from "firebase/storage";
-
-const storage = getStorage();
-
 
 
 export function CardElement(props){

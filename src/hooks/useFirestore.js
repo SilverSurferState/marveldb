@@ -1,21 +1,20 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {projectFirestore} from '../firebase/config';
+import {collection, query, where, getDocs } from "firebase/firestore";
 
-const useFirestore = (collection, orderBy, direction) => {
+const useFirestore = (name, order, direction) => {
     const [docs, setDocs] = useState([]);
-
-    useEffect(() => {
-        const unsubscribe = projectFirestore.collection(collection)
-            .orderBy(orderBy, direction)
-            .onSnapshot((snapshot) => {
-                let docs = [];
-                snapshot.forEach(doc => {
-                    docs.push({...doc.data(), id: doc.id});
-            });
-        setDocs(docs);
-    });
-    return () => unsubscribe();
-    }, [collection])
+    console.log(projectFirestore)
+    async function fetchData(){
+        const ref = projectFirestore.collection(name);
+        const snapshot = await ref.get();
+        let documents = [];
+        snapshot.forEach(doc => {
+            documents.push({...doc.data(), id: doc.id});
+        });
+        setDocs(documents)
+        console.log(documents)
+    }
     return {docs};
 }
 
