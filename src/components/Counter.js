@@ -2,7 +2,7 @@ import {Button} from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export function Counter(props){
-    const {score, setNumValue, clicked} = props
+    const {score, setNumValue, clicked} = props;
     const maxValue = 10;
     return <>
         {score >=0 && <p><strong>Score: </strong>{score}</p>}
