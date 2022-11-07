@@ -5,32 +5,31 @@ import {Navigation} from "./components/Navigation";
 import {ActorSection} from "./sections/ActorSection";
 import {MovieSection} from "./sections/MovieSection";
 import {ComicSection} from "./sections/ComicSection";
-import {useFirestore} from './hooks/useFirestore';
-// import {collection, query, orderBy} from 'firebase/firestore';
-// import {useCollectionData} from 'react-firebase-hooks/firestore';
+import {MovieProvider} from "./context/MovieContext";
+import {ActorProvider} from "./context/ActorContext";
+import {ComicProvider} from "./context/ComicContext";
 
 
-// const moviesConverter =  {
-//   toFirestore : function (dataInApp) {
-//     return {
-//       name: dataInApp.name,
-//       age: Number(dataInApp.age),
-//       city: dataInApp.city
-//     }
-//   },
-//   fromFirestore : function(snapshot, options) {
-//     const data = snapshot.data(options);
-//     return {...data, id: snapshot.id, ref: snapshot.ref};
-//   }
-// }
 
-function App() {
+function ProvidedApp() {
   return <>
     <Navigation links={["Movies", "Actors", "Comics"]}></Navigation>
     <MovieSection id={"Movies"}></MovieSection>
-    {/*<ActorSection id={"Actors"}></ActorSection>*/}
-    {/*<ComicSection id={"Comics"}></ComicSection>*/}
+    <ActorSection id={"Actors"}></ActorSection>
+    <ComicSection id={"Comics"}></ComicSection>
   </>
+}
+
+function App(){
+    return (
+    <MovieProvider>
+        <ComicProvider>
+            <ActorProvider>
+                <ProvidedApp/>
+            </ActorProvider>
+        </ComicProvider>
+    </MovieProvider>
+    );
 }
 
 export default App;

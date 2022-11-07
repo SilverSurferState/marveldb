@@ -1,45 +1,25 @@
-import {CardElement} from "./CardElement";
+import {ActorCardElement} from "./CardElement";
 import {Section} from "./Section";
 import {Col} from "react-bootstrap";
 import {useState} from "react";
 import PropTypes from "prop-types";
 
 export function Actors(props){
-    const {actors, id, sorted} = props;
-    getSortingType(sorted, actors);
+    const {actors, id} = props;
     return <Section id={id}>
-        {actors.map((actor, index) => <Actor key={index} actor={actor}></Actor>)}
+        {actors?.map((actor, index) => <Actor key={index} actor={actor}></Actor>)}
     </Section>
 }
 
 export function Actor(props){
-    const {firstName, lastName, movies, characterName} = props.actor;
+    const {actor} = props;
     const [info, showInfo] = useState(false);
     return <>
         <Col className="col-sm-3 h-auto">
-            <CardElement title={`${firstName} ${lastName}`} info={info} showInfo={showInfo} >
-                <div>
-                    <strong>personage: </strong>
-                    <div>{characterName}</div>
-                </div>
-                <div>
-                    Speelt mee in:
-                    {movies.map((m, index) => <li key={index}>{m}</li>)}
-                </div>
-
-            </CardElement></Col>
+            <ActorCardElement actor={actor}>
+            </ActorCardElement></Col>
     </>
 }
-
-function getSortingType(sorted, actors) {
-    if (sorted === "AZ") {
-        actors.sort((m, am) => m.lastName.localeCompare(am.lastName))
-    }
-    else if (sorted === "ZA") {
-        actors.sort((m, am) => -1 * m.lastName.localeCompare(am.lastName))
-    }
-}
-
 
 Actor.propTypes = {
     firstName: PropTypes.string,

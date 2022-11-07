@@ -1,24 +1,27 @@
 import {Actors} from "../components/Actors";
-import {Container, Row} from "react-bootstrap";
-import {Sorter} from "../components/Sorter";
+import {Container, Row, Button} from "react-bootstrap";
 import {useState} from "react";
+import {ActorModal} from "../components/Modal"
 import * as PropTypes from "prop-types";
-import {MovieSection} from "./MovieSection";
+import {useActorContext} from '../context/ActorContext'
+
 
 export function ActorSection(props){
-    const {actors, id} = props
-    const [sort, setSort] = useState("default");
+    const {id} = props;
+    const [show, setShow] = useState(false);
+    const {actors} = useActorContext();
     return <Container>
         <div><h3 className="text-center rounded">{id}</h3></div>
         <Row className="justify-content-center">
-            <Sorter onClick={() => setSort("AZ")} name="A-Z"/>
-            <Sorter onClick={() => setSort("ZA")} name="Z-A"/>
+            <Button className="w-25 btn btn-primary" onClick={() => setShow(true)}>Add Actor</Button>
+            <ActorModal show={show} setShow={() => setShow(false)} title={"Add Actor"}/>
         </Row>
-    <Actors actors={actors} id={id} sorted={sort}></Actors>
+        <Actors actors={actors} id={id}></Actors>
     </Container>
+
 }
 
-MovieSection.propTypes = {
-    actors : PropTypes.arrayOf(PropTypes.object),
-    id : PropTypes.string,
-}
+ActorSection.propTypes = {
+    actors: PropTypes.any,
+    id: PropTypes.string
+};

@@ -1,16 +1,16 @@
 import {Section} from "./Section";
 import {Button, Col, OverlayTrigger, Popover} from "react-bootstrap";
-import {CardElement} from "./CardElement";
+import {ComicCardElement} from "./CardElement";
 
 function Comic(props){
-    const {published, writer, title, description} = props.comic
+    const {comic} = props;
     const popover = (
         <Popover id="popover-basic">
-            <Popover.Header as="h3">{title}</Popover.Header>
+            <Popover.Header as="h3">{comic.title}</Popover.Header>
             <Popover.Body>
-                {published && <div><strong>Gepubliceerd: </strong> {published}</div>}
-                {writer && <div><strong>Schrijver(s): </strong> {writer}</div>}
-                {description && <div><strong>Beschrijving: </strong> {description}</div>}
+                {comic.published && <div><strong>Published: </strong> {comic.published}</div>}
+                {comic.writer && <div><strong>Writer: </strong> {comic.writer}</div>}
+                {comic.description && <div><strong>Description: </strong> {comic.description}</div>}
             </Popover.Body>
         </Popover>
     );
@@ -21,22 +21,17 @@ function Comic(props){
     );
     return <>
         <Col className="col-sm-3 h-auto">
-            <CardElement title={`${title}`}>
+            <ComicCardElement comic={comic}>
                 <Overlay>
 
                 </Overlay>
-            </CardElement></Col>
+            </ComicCardElement></Col>
     </>
 }
 
-
-
-
-
-
 export function Comics(props){
-    const {comics, id} = props
+    const {comics, id} = props;
     return <Section id={id}>
-        {comics.map((comic,index) => <Comic key={index} comic={comic}></Comic>)}
+        {comics?.map((comic,index) => <Comic key={index} comic={comic}></Comic>)}
     </Section>
 }

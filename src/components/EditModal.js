@@ -5,23 +5,17 @@ import {getStorage, ref, uploadBytes} from 'firebase/storage';
 import {doc, addDoc, collection} from 'firebase/firestore';
 import {projectStorage} from '../firebase/config';
 import {projectFirestore} from '../firebase/config';
+import {useMovieContext} from '../context/MovieContext';
+import {useActorContext} from '../context/ActorContext';
+import {useComicContext} from '../context/ComicContext';
 
-export function MovieModal(props) {
+export function EditMovieModal(props) {
     const {show, setShow, title, movie} = props;
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const {editMovieSave} = useMovieContext();
     async function onSubmit(data){
-        const imgTitle = data.title.replace(/\s+/g, '').replace(':','_').toLowerCase()+'.jpg'
-        const storageRef = ref(projectStorage, imgTitle);
-        uploadBytes(storageRef, data.cover[0]).then((snapshot) => {
-        console.log('uploaded')})
-        await addDoc(collection(projectFirestore, 'Movies'), {
-            title: data.title,
-            releaseDate: data.releaseDate,
-            cover: 'gs://marveldb-1bfa3.appspot.com/'+imgTitle,
-            seen: data.seen,
-            score: data.score
-        });
-        reset({...data});
+    const movieToSave = Object.assign(movie, data);
+        editMovieSave(movieToSave);
         setShow(false);
         }
 
@@ -29,17 +23,16 @@ export function MovieModal(props) {
         <>
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{title}</Modal.Title>
+                    <Modal.Title></Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body >
                 <form className="col-6">
-                 <label>Title:<input {...register("title", { required: true })} /></label>
+                 <label>Title:<input defaultValue={movie && movie.title} {...register("title", { required: true })} /></label>
                  {errors.title && <span>This field is required</span>}
-                 <label>Release Date:<input type="number" min='2000'{...register("releaseDate", { required: true })} /></label>
+                 <label>Release Date:<input type="number" min='2000' max='2099' step='1' placeholder='2022' defaultValue={movie && movie.releaseDate}{...register("releaseDate", { required: true })} /></label>
                  {errors.releaseDate && <span>This field is required</span>}
-                 <label>Seen:<input type='checkbox' {...register("seen")} /></label>
-                 <label>Score:<input type='number' min='0' max='10'  {...register("score")} /></label>
-                 <label>Add Poster:<input type='file' {...register("cover")}/></label>
+                 <label>Seen:<input defaultValue={movie && movie.seen} type='checkbox' {...register("seen")} /></label>
+                 <label>Score:<input defaultValue={movie && movie.score} type='number' min='0' max='10' {...register("score")} /></label>
                 </form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -55,23 +48,16 @@ export function MovieModal(props) {
     );
 }
 
-export function ActorModal(props) {
-    const {show, setShow, title} = props;
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+export function EditActorModal(props) {
+    const {show, setShow, title, actor} = props;
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const {editActorSave} = useActorContext();
     async function onSubmit(data){
-        const imgTitle = data.name.replace(/\s+/g, '').replace(':','_').toLowerCase()+'.jpg'
-        const storageRef = ref(projectStorage, imgTitle);
-        uploadBytes(storageRef, data.picture[0]).then((snapshot) => {
-        console.log('uploaded')})
-        await addDoc(collection(projectFirestore, 'Actors'), {
-            name: data.name,
-            alias: data.alias,
-            picture: 'gs://marveldb-1bfa3.appspot.com/'+imgTitle,
-            birthday: data.birthday
-        });
-        setShow(false);
-        reset({...data});
+        const actorToSave = Object.assign(actor, data);
+           editActorSave(actorToSave);
+           setShow(false);
         }
+
 
     return (
         <>
@@ -81,12 +67,11 @@ export function ActorModal(props) {
                 </Modal.Header>
                 <Modal.Body>
                 <form className="col-6">
-                 <label>Name:<input {...register("name", { required: true })} /></label>
+                 <label>Name:<input defaultValue={actor.name && actor.name} {...register("name", { required: true })} /></label>
                  {errors.name && <span>This field is required</span>}
-                 <label>Alias:<input {...register("alias", { required: true })} /></label>
+                 <label>Alias:<input defaultValue={actor.alias && actor.alias} {...register("alias", { required: true })} /></label>
                  {errors.alias && <span>This field is required</span>}
-                 <label>Birthday:<input type='date'{...register("birthday")} /></label>
-                 <label>Add Picture:<input type='file' {...register("picture")}/></label>
+                 <label>Birthday:<input defaultValue={actor.birthday && actor.birthday} type='date'{...register("birthday")} /></label>
                 </form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -103,9 +88,9 @@ export function ActorModal(props) {
 }
 
 
-export function ComicModal(props) {
+export function EditComicModal(props) {
     const {show, setShow, title} = props;
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     async function onSubmit(data){
         const imgTitle = data.title.replace(/\s+/g, '').replace(':','_').toLowerCase()+'.jpg'
         const storageRef = ref(projectStorage, imgTitle);
@@ -113,14 +98,12 @@ export function ComicModal(props) {
         console.log('uploaded')})
         await addDoc(collection(projectFirestore, 'Comics'), {
             title: data.title,
-            writer: data.writer,
+            author: data.author,
             cover: 'gs://marveldb-1bfa3.appspot.com/'+imgTitle,
             read: data.read,
-            score: data.score,
-            description: data.description
+            score: data.score
         });
         setShow(false);
-        reset({...data});
         }
 
     return (
@@ -133,12 +116,10 @@ export function ComicModal(props) {
                 <form className="col-6">
                  <label>Title:<input {...register("title", { required: true })} /></label>
                  {errors.title && <span>This field is required</span>}
-                 <label>Author:<input {...register("writer", { required: true })} /></label>
+                 <label>Author:<input {...register("author", { required: true })} /></label>
                  {errors.releaseDate && <span>This field is required</span>}
-                 <label>Score:<input type='number' min='0' max='10'  {...register("score")} /></label>
                  <label>Read:<input type='checkbox' {...register("read")} /></label>
                  <label>Add Album Cover:<input type='file' {...register("cover")}/></label>
-                 <label>Description:<textarea {...register("description")}/></label>
                 </form>
                 </Modal.Body>
                 <Modal.Footer>
