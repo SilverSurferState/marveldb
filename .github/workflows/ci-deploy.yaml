@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - marveldb2
+jobs:
+  deploy:
+    name: Deploy on Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1.1.0
+        with:
+          version: 12.x
+
+      - name: npm install all dependencies
+        run:
+          npm ci
+
+      - name: npm deploy with gh-pages
+        run: |
+          git config user.name $user_name 
+          git config user.email $user_email 
+          git remote set-url origin https://x-access-token:${repo_token}@github.com/${repository}.git 
+          npm run deploy
+        env:
+          user_name: "$GITHUB_ACTOR"
+          user_email: "$GITHUB_ACTOR@bots.github.com"
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
