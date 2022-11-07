@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Nav, Navbar, Button} from "react-bootstrap";
 
 export function Navigation(props){
     const {links} = props;

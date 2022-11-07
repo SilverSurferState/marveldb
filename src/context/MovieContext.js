@@ -34,18 +34,9 @@ export function MovieProvider(props) {
             },[])
 
 
-    const getMoviesAndSortAZ = async () => {
-        const data = await getDocs(query(collectionRef, orderBy('title', 'asc')));
-        const newData = data.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-        }));
-       setMovieSelected(newData);
-    };
-
     const api = useMemo(() => ({
-        movies, deleteMovie, editMovie, editMovieSave, getMoviesAndSortAZ
-    }), [movies, deleteMovie, editMovie, editMovieSave, getMoviesAndSortAZ]);
+        movies, deleteMovie, editMovie, editMovieSave
+    }), [movies, deleteMovie, editMovie, editMovieSave]);
 
 
  

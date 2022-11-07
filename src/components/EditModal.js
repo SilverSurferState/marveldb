@@ -31,7 +31,7 @@ export function EditMovieModal(props) {
                  {errors.title && <span>This field is required</span>}
                  <label>Release Date:<input type="number" min='2000' max='2099' step='1' placeholder='2022' defaultValue={movie && movie.releaseDate}{...register("releaseDate", { required: true })} /></label>
                  {errors.releaseDate && <span>This field is required</span>}
-                 <label>Seen:<input defaultValue={movie && movie.seen} type='checkbox' {...register("seen")} /></label>
+                 <label>Seen:<input checked={movie.seen} type='checkbox' {...register("seen")} /></label>
                  <label>Score:<input defaultValue={movie && movie.score} type='number' min='0' max='10' {...register("score")} /></label>
                 </form>
                 </Modal.Body>
