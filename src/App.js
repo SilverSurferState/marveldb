@@ -19,14 +19,12 @@ function ProvidedApp() {
       font-family: "Roboto";
       padding: 40px;
       background: ${(props) => (props.theme === "light" ? "white" : "#1a1433")};
-      height: 100vh;
     `;
-
 
   return <>
   <Wrapper theme={theme}>
+  <Button className="btn-circle m-5"onClick={() => theme === "light" ? setTheme("dark") : setTheme("light")}>Toggle theme</Button>
     <Navigation links={["Movies", "Actors", "Comics"]}></Navigation>
-    <Button className="btn-circle m-5"onClick={() => theme === "light" ? setTheme("dark") : setTheme("light")}>Toggle theme</Button>
     <MovieSection id={"Movies"}></MovieSection>
     <ActorSection id={"Actors"}></ActorSection>
     <ComicSection id={"Comics"}></ComicSection>
@@ -36,9 +34,7 @@ function ProvidedApp() {
 }
 
 function App(){
-
     return (
-
     <MovieProvider>
         <ComicProvider>
             <ActorProvider>
@@ -46,7 +42,6 @@ function App(){
             </ActorProvider>
         </ComicProvider>
     </MovieProvider>
-
     );
 }
 

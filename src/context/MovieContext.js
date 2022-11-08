@@ -1,5 +1,5 @@
-import React, {createContext, useContext, useMemo, useState, useCallback} from 'react';
-import {collection, updateDoc, deleteDoc, query, getDocs, orderBy} from 'firebase/firestore';
+import React, {createContext, useContext, useMemo, useCallback} from 'react';
+import {collection, updateDoc, deleteDoc} from 'firebase/firestore';
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {projectFirestore} from '../firebase/config';
 const MovieContext = createContext();
@@ -14,13 +14,8 @@ const movieConverter = {
 
 
 export function MovieProvider(props) {
-    const [movieSelected, setMovieSelected] = useState();
     const collectionRef = useMemo(() =>collection(projectFirestore, "Movies").withConverter(movieConverter), []);
-    const [movies, loading, error] = useCollectionData(collectionRef);
-
-    const editMovie = useCallback((movie) => {
-            setMovieSelected(movie)
-        }, [])
+    const [movies] = useCollectionData(collectionRef);
 
     const deleteMovie = useCallback(async (movie) => {
             await deleteDoc(movie.ref);
@@ -35,11 +30,10 @@ export function MovieProvider(props) {
 
 
     const api = useMemo(() => ({
-        movies, deleteMovie, editMovie, editMovieSave
-    }), [movies, deleteMovie, editMovie, editMovieSave]);
+        movies, deleteMovie, editMovieSave
+    }), [movies, deleteMovie, editMovieSave]);
 
 
- 
     return <MovieContext.Provider value={api}>
         {props.children} 
     </MovieContext.Provider>

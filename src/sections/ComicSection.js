@@ -10,7 +10,6 @@ export function ComicSection(props){
     const {id} = props;
     const [show, setShow] = useState(false);
     const {comics} = useComicContext();
-    console.log(comics)
     return <Container>
         <div><h3 className="text-center rounded">{id}</h3></div>
         <Row className="justify-content-center">

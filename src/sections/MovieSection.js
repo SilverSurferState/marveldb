@@ -1,6 +1,6 @@
 import {Movies} from "../components/Movies";
 import {Container, Row, Button} from "react-bootstrap";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {MovieModal} from "../components/Modal"
 import * as PropTypes from "prop-types";
 import {useMovieContext} from '../context/MovieContext'
@@ -18,8 +18,6 @@ export function MovieSection(props){
     const [show, setShow] = useState(false);
     const {movies} = useMovieContext();
     const [movieList, setMovieList] = useState(movies);
-
-
     const sortByTitle = () => {
         const sorted = [
           ...movies.sort((a, b) => {
@@ -58,7 +56,7 @@ export function MovieSection(props){
             <Button className="col-2 btn btn-primary m-2" onClick={() => setShow(true)}>Add Movie</Button>
             <MovieModal show={show} setShow={() => setShow(false)} title={"Add Movie"}/>
         </Row>
-        <Movies movies={movieList} id={id}></Movies>
+        <Movies movies={movieList?.length > 0 ? movieList : movies} id={id}></Movies>
     </Container>
 
 }

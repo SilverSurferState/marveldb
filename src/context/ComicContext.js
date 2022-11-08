@@ -14,13 +14,8 @@ const comicConverter = {
 
 
 export function ComicProvider(props) {
-    const [comicSelected, setComicSelected] = useState();
     const collectionRef = useMemo(() =>collection(projectFirestore, "Comics").withConverter(comicConverter), []);
     const [comics, loading, error] = useCollectionData(collectionRef);
-
-    const editComic = useCallback((comic) => {
-            setComicSelected(comic)
-        }, [])
 
     const deleteComic = useCallback(async (comic) => {
             await deleteDoc(comic.ref);
@@ -37,8 +32,8 @@ export function ComicProvider(props) {
 
 
     const api = useMemo(() => ({
-        comics, deleteComic, editComic, editComicSave
-    }), [comics, deleteComic, editComic, editComicSave]);
+        comics, deleteComic, editComicSave
+    }), [comics, deleteComic, editComicSave]);
 
 
  

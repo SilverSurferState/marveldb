@@ -13,7 +13,6 @@ export function Actors(props){
 
 export function Actor(props){
     const {actor} = props;
-    const [info, showInfo] = useState(false);
     return <>
         <Col className="col-sm-3 h-auto">
             <ActorCardElement actor={actor}>

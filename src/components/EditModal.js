@@ -26,7 +26,7 @@ export function EditMovieModal(props) {
                     <Modal.Title></Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
-                <form className="col-6">
+                <form className="col-4">
                  <label>Title:<input defaultValue={movie && movie.title} {...register("title", { required: true })} /></label>
                  {errors.title && <span>This field is required</span>}
                  <label>Release Date:<input type="number" min='2000' max='2099' step='1' placeholder='2022' defaultValue={movie && movie.releaseDate}{...register("releaseDate", { required: true })} /></label>
@@ -66,7 +66,7 @@ export function EditActorModal(props) {
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <form className="col-6">
+                <form className="col-4">
                  <label>Name:<input defaultValue={actor.name && actor.name} {...register("name", { required: true })} /></label>
                  {errors.name && <span>This field is required</span>}
                  <label>Alias:<input defaultValue={actor.alias && actor.alias} {...register("alias", { required: true })} /></label>
@@ -113,7 +113,7 @@ export function EditComicModal(props) {
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <form className="col-6">
+                <form className="col-4">
                  <label>Title:<input {...register("title", { required: true })} /></label>
                  {errors.title && <span>This field is required</span>}
                  <label>Author:<input {...register("author", { required: true })} /></label>
