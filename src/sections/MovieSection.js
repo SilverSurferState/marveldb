@@ -17,7 +17,7 @@ export function MovieSection(props){
     const {id} = props;
     const [show, setShow] = useState(false);
     const {movies} = useMovieContext();
-    const [movieList, setMovieList] = useState([]);
+    const [movieList, setMovieList] = useState(movies);
 
 
     const sortByTitle = () => {

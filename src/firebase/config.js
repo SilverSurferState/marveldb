@@ -18,6 +18,5 @@ const app = initializeApp(firebaseConfig);
 
 const projectStorage = getStorage(app);
 const projectFirestore = getFirestore(app);
-const auth = getAuth(app);
-export {projectStorage, projectFirestore, auth};
+export {projectStorage, projectFirestore};
 console.log("initialized firebase connection");
