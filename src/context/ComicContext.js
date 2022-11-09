@@ -28,9 +28,6 @@ export function ComicProvider(props) {
                 return true;
             },[])
 
-
-
-
     const api = useMemo(() => ({
         comics, deleteComic, editComicSave
     }), [comics, deleteComic, editComicSave]);

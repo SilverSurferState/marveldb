@@ -20,13 +20,6 @@ export function Actor(props){
     </>
 }
 
-Actor.propTypes = {
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    movies: PropTypes.arrayOf(PropTypes.string),
-    characterName: PropTypes.string
-}
-
 Actors.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.object),
     id: PropTypes.string

@@ -11,7 +11,6 @@ const useLocalStorage = (key, defaultValue) => {
     } catch (error) {
       currentValue = defaultValue;
     }
-
     return currentValue;
   });
 

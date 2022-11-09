@@ -1,4 +1,5 @@
 import {useForm} from 'react-hook-form';
+import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {getStorage, ref, uploadBytes} from 'firebase/storage';
@@ -13,6 +14,7 @@ export function EditMovieModal(props) {
     const {show, setShow, title, movie} = props;
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const {editMovieSave} = useMovieContext();
+    const [hasSeen, setHasSeen] = useState(movie.seen);
     async function onSubmit(data){
     const movieToSave = Object.assign(movie, data);
         editMovieSave(movieToSave);
@@ -31,7 +33,7 @@ export function EditMovieModal(props) {
                  {errors.title && <span>This field is required</span>}
                  <label>Release Date:<input type="number" min='2000' max='2099' step='1' placeholder='2022' defaultValue={movie && movie.releaseDate}{...register("releaseDate", { required: true })} /></label>
                  {errors.releaseDate && <span>This field is required</span>}
-                 <label>Seen:<input checked={movie.seen} type='checkbox' {...register("seen")} /></label>
+                 <label>Seen:<input defaultChecked={hasSeen} onChange={() => setHasSeen(!hasSeen)} type='checkbox' {...register("seen")} /></label>
                  <label>Score:<input defaultValue={movie && movie.score} type='number' min='0' max='10' {...register("score")} /></label>
                 </form>
                 </Modal.Body>

@@ -16,11 +16,7 @@ const actorConverter = {
 export function ActorProvider(props) {
     const [actorSelected, setActorSelected] = useState();
     const collectionRef = useMemo(() =>collection(projectFirestore, "Actors").withConverter(actorConverter), []);
-    const [actors, loading, error] = useCollectionData(collectionRef);
-
-    const editActor = useCallback((actor) => {
-            setActorSelected(actor)
-        }, [])
+    const [actors] = useCollectionData(collectionRef);
 
     const deleteActor = useCallback(async (actor) => {
             await deleteDoc(actor.ref);
@@ -33,15 +29,10 @@ export function ActorProvider(props) {
                 return true;
             },[])
 
-
-
-
     const api = useMemo(() => ({
-        actors, deleteActor, editActor, editActorSave
-    }), [actors, deleteActor, editActor, editActorSave]);
+        actors, deleteActor, editActorSave
+    }), [actors, deleteActor, editActorSave]);
 
-
- 
     return <ActorContext.Provider value={api}>
         {props.children} 
     </ActorContext.Provider>
